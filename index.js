@@ -1,14 +1,20 @@
+/*jslint white: true, onevar: true, undef: true, nomen: true, eqeqeq: true, plusplus: true, bitwise: true, regexp: true, newcap: true, immed: true, indent: 2 */
+/*global require, process, console, setTimeout, exports */
 var http = require('http'),
   base64 = require('base64'),
   qs     = require('querystring'),
-  events = require('events');
+  events = require('events'),
+  createStream,
+  processStream,
+  validateTweet,
+  escapeRegExp;
 
-function stream(username, password, stream) {
+createStream = function (username, password, stream) {
   var currentClient, newClient, twitterEvents, // Vars
     changeStream, parseStreamUpdate, handleStream; // Functions
 
-  changeStream = function(stream) {
-    var client, query, count, requestStart = (new Date()).getTime();
+  changeStream = function (stream) {
+    var client, query, requestStart = (new Date()).getTime();
 
     if (typeof stream === 'object') {
       query = {};
@@ -41,8 +47,7 @@ function stream(username, password, stream) {
         'User-Agent'    : 'vptweetstream/0.1 (http://kodfabrik.se)',
         'Authorization' : 'Basic ' + base64.encode(username + ':' + password)
       }).on('response', function (response) {
-        var request = this, closeOldConnection;
-        closeOldConnection = function () {
+        var closeOldConnection = function () {
           if (client === newClient) {
             if (currentClient) {
               console.log('This is a new Twitter connection - closing the currently open.');
@@ -64,7 +69,7 @@ function stream(username, password, stream) {
           var retryIn;
           console.log('Twitter exited with code: ' + response.statusCode);
           if (client === newClient) {
-            if (response.statusCode == 200) {
+            if (response.statusCode === 200) {
               retryIn = 1000;
             }
             else if (response.statusCode > 399 && response.statusCode < 500) {
@@ -114,7 +119,7 @@ function stream(username, password, stream) {
   handleStream = function (stream) {
     var body = '';
     return function (chunk) {
-      var tweet, bodies, i, length, created;
+      var bodies, i, length;
       body += chunk;
       console.log('Chunk');
       if (chunk.charCodeAt(chunk.length - 2) === 13 && chunk.charCodeAt(chunk.length - 1) === 10) {
@@ -143,25 +148,25 @@ function stream(username, password, stream) {
   };
 };
 
-exports.stream = stream;
+exports.stream = createStream;
 
 // Utility functions
 
-function processStream(stream) {
+processStream = function (stream) {
   var i, length, hashRegExp;
   // Create regular expression to be used to match results if we are picky about follows
   if (stream.realfollow && !stream.trackRegExp) {
     hashRegExp = [];
     length = stream.track.length;
-    for (i = 0; i < length; i++) {
+    for (i = 0; i < length; i += 1) {
       hashRegExp[i] = escapeRegExp(stream.track[i]);
     }
     console.log('Twitter Tracking RegExp: (' + hashRegExp.join(')|(') + ')');
     stream.trackRegExp = '(' + hashRegExp.join(')|(') + ')';
   }
-}
+};
 
-function validateTweet(tweet, stream) {
+validateTweet = function (tweet, stream) {
   if (stream.realfollow) {
     if (stream.follow && stream.follow.indexOf(tweet.user.id) !== -1 && (!tweet.in_reply_to_user_id || stream.follow.indexOf(tweet.in_reply_to_user_id) !== -1)) {
       return true;
@@ -173,9 +178,9 @@ function validateTweet(tweet, stream) {
     return false;
   }
   return true;
-}
+};
 
-function escapeRegExp(text) {
+escapeRegExp = function (text) {
   if (!arguments.callee.sRE) {
     var specials = [
       '/', '.', '*', '+', '?', '|',
@@ -186,4 +191,4 @@ function escapeRegExp(text) {
     );
   }
   return text.replace(arguments.callee.sRE, '\\$1');
-}
+};
