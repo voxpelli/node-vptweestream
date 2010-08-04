@@ -42,6 +42,7 @@ createStream = function (username, password, stream) {
       client = http.createClient(80, 'stream.twitter.com');
       newClient = client;
 
+      console.log('Requesting /1/statuses/' + query);
       client.request('/1/statuses/' + query, {
         'Host'          : 'stream.twitter.com',
         'User-Agent'    : 'vptweetstream/0.1 (http://kodfabrik.se)',
