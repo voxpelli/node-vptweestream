@@ -14,7 +14,7 @@ createStream = function (username, password, stream) {
     changeStream, parseStreamUpdate, handleStream; // Functions
 
   changeStream = function (stream) {
-    var client, query, requestStart = (new Date()).getTime();
+    var client, query, requestStart = Date.now();
 
     if (typeof stream === 'object') {
       query = {};
@@ -83,7 +83,7 @@ createStream = function (username, password, stream) {
             else {
               retryIn = 2000;
             }
-            retryIn = retryIn * ((requestStart - (new Date()).getTime() > 5000) ? 1 : 15);
+            retryIn = retryIn * ((requestStart - Date.now() > 5000) ? 1 : 15);
             console.log('Reconnecting to Twitter in ' + (retryIn / 1000) + ' seconds...');
             setTimeout(function () {
               changeStream(stream);
@@ -122,13 +122,11 @@ createStream = function (username, password, stream) {
     return function (chunk) {
       var bodies, i, length;
       body += chunk;
-      console.log('Chunk');
       if (chunk.charCodeAt(chunk.length - 2) === 13 && chunk.charCodeAt(chunk.length - 1) === 10) {
         bodies = body.split("\r");
         body   = '';
         length = bodies.length - 1;
         for (i = 0; i < length; i += 1) {
-          console.log('Tweet');
           process.nextTick((function (body) {
             return function () {
               parseStreamUpdate(body, stream);
