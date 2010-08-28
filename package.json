@@ -4,6 +4,7 @@
   "description" : "Twitter stream library with support for updating a stream.",
   "url"         : "http://github.com/voxpelli/node-vptweestream",
   "keywords"    : ["twitter"],
+  "author"      : "Pelle Wessman <pelle@kodfabrik.se>",
   "engines"     : ["node"],
   "directories" : {"lib" : "./lib"}
 }
