@@ -9,7 +9,6 @@
     "url"  : "https://voxpelli@github.com/voxpelli/node-vptweestream.git"
   },
   "keywords"     : ["twitter"],
-  "dependencies" : {"base64": "*"},
   "engines"      : ["node"],
   "directories"  : {"lib" : "./lib"}
 }
