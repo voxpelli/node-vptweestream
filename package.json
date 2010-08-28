@@ -1,0 +1,9 @@
+{
+  "name"        : "vptweetstream",
+  "version"     : "0.0.1",
+  "description" : "Twitter stream library with support for updating a stream.",
+  "url"         : "http://github.com/voxpelli/node-vptweestream",
+  "keywords"    : ["twitter"],
+  "engines"     : ["node"],
+  "directories" : {"lib" : "./lib"}
+}
