@@ -1,14 +1,25 @@
 {
-  "name"         : "vptweetstream",
-  "version"      : "0.0.1",
-  "author"       : "Pelle Wessman <pelle@kodfabrik.se> (http://kodfabrik.se/)",
-  "description"  : "Twitter stream library with support for updating a stream.",
-  "url"          : "http://github.com/voxpelli/node-vptweestream",
-  "repository"   : {
+  "name"        : "vptweetstream",
+  "version"     : "0.0.2",
+  "description" : "Twitter stream library with support for updating a stream.",
+  "url"         : "http://github.com/voxpelli/node-vptweestream",
+  "license"     : "MIT",
+  "keywords"    : ["twitter"],
+  "author" : {
+    "name" : "Pelle Wessman",
+    "email": "pelle@kodfabrik.se",
+    "url"  : "http://kodfabrik.se/"
+  },
+  "repository" : {
     "type" : "git",
     "url"  : "https://voxpelli@github.com/voxpelli/node-vptweestream.git"
   },
-  "keywords"     : ["twitter"],
-  "engines"      : ["node"],
-  "directories"  : {"lib" : "./lib"}
+  "engines" :  {
+    "node": "0.8.x",
+    "npm": "1.1.x"
+  },
+  "main" : "./lib/vptweetstream",
+  "directories" : {
+    "lib": "./lib"
+  }
 }
