@@ -1,7 +1,7 @@
 {
   "name"        : "vptweetstream",
-  "version"     : "0.0.2",
-  "description" : "Twitter stream library with support for updating a stream.",
+  "version"     : "0.2.0",
+  "description" : "VoxPelli Twitter Streamer with support for eg. updating streams",
   "url"         : "http://github.com/voxpelli/node-vptweestream",
   "license"     : "MIT",
   "keywords"    : ["twitter"],
