@@ -75,7 +75,10 @@ Non-supported message types will result in warnings being written to the console
 
 ## Changelog
 
+### 0.2.1
+
+* Corrected a faulty URL for the git-repository in the package.json
+
 ### 0.2.0
 
 * No changelog being tracked for this and prior version, but main changes were related to updating the module to new Node, NPM and Twitter versions.
-
