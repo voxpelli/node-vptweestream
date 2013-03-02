@@ -10,7 +10,7 @@ Simple:
 
 ```javascript
 require('vptweetstream')
-  .stream('username', 'password', { track : ['keyword1'] });
+  .stream('username', 'password', { track : ['keyword1'] })
   .events.on('tweet', function (tweet) {
     // The full tweet object from Twitter
   });
