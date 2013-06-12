@@ -4,13 +4,20 @@ A library for Twitters realtime streaming API that among other things has suppor
 
 It's a work in progress - feel free to fork away but don't expect anything :)
 
+**OAuth**-credentials: To get them register a Twitter app on https://dev.twitter.com/apps and when you've done so you can get a token for yourself from the configuration page.
+
 ## Usage
 
 Simple:
 
 ```javascript
 require('vptweetstream')
-  .stream('username', 'password', { track : ['keyword1'] })
+  .stream({
+    consumer_key: 'abc123',
+    consumer_secret: 'abc123',
+    token: 'abc123',
+    token_secret: 'abc123'
+  }, { track : ['keyword1'] })
   .events.on('tweet', function (tweet) {
     // The full tweet object from Twitter
   });
@@ -21,7 +28,12 @@ Advanced:
 ```javascript
 var vptweetstream = require('vptweetstream'), stream;
 
-stream = vptweetstream.stream('username', 'password', {
+stream = vptweetstream.stream({
+    consumer_key: 'abc123',
+    consumer_secret: 'abc123',
+    token: 'abc123',
+    token_secret: 'abc123'
+}, {
   follow : ['voxpelli', 'github'],    // tweets related to @voxpelli or @github
   track : ['keyword1', 'keyword2'],   // keyword1 OR keyword2
   locations : [
@@ -69,11 +81,14 @@ Non-supported message types will result in warnings being written to the console
 
 ## Possible future features
 
-* **OAuth support** - Twitter promotes the use of this instead of passwords and it's better so it should be supported
 * **More message types**
 * **More events**
 
 ## Changelog
+
+### 0.3.0
+
+* Moved to OAuth for authentication due to changes in the Twitter API
 
 ### 0.2.1
 
