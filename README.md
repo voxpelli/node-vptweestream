@@ -86,6 +86,10 @@ Non-supported message types will result in warnings being written to the console
 
 ## Changelog
 
+### 0.3.1
+
+* Removed unused modules that were still loaded
+
 ### 0.3.0
 
 * Moved to OAuth for authentication due to changes in the Twitter API
