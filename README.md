@@ -86,6 +86,10 @@ Non-supported message types will result in warnings being written to the console
 
 ## Changelog
 
+### 0.3.3
+
+* Fixed bug with replacing old connections with new ones
+
 ### 0.3.2
 
 * Made it possible to initiate the stream without starting it
