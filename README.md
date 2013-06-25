@@ -86,6 +86,10 @@ Non-supported message types will result in warnings being written to the console
 
 ## Changelog
 
+### 0.3.4
+
+* Added new closeStream() method to enable graceful shutdowns - which is useful at eg. Heroku
+
 ### 0.3.3
 
 * Fixed bug with replacing old connections with new ones
