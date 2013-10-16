@@ -38,7 +38,8 @@ stream = vptweetstream.stream({
   track : ['keyword1', 'keyword2'],   // keyword1 OR keyword2
   locations : [
     ['-122.75,36.8', '-121.75,37.8'], // San Fransisco
-    ['-74,40', '-73,41']              // OR New York
+    ['-74,40', '-73,41'],             // OR New York
+    ['12.865,55.5', '13.185,55.7']    // OR Malmö
   ],
   realfollow : true // Only show tweets from someone in the follow array
 });
@@ -60,7 +61,7 @@ stream.changeStream({ track : ['apple'] });
 
 * **follow** - an array of Twitter usernames to follow. Any tweet related to one of these users will be included in the stream, see [Twitter's documentation](https://dev.twitter.com/docs/streaming-apis/parameters#follow) for which kind of tweets that are included.
 * **track** - an array of keywords to track. If a tweet includes the keyword in any variation it will be included in the stream, see [Twitter's documentation](https://dev.twitter.com/docs/streaming-apis/parameters#track) for all variations.
-* **locations** - either just a simple array containing the longitude and latitutude positions as two strings or an array containing several such arrays. Any tweet from within any of the specified bounding boxes will be included in the stream.
+* **locations** - either just a simple array containing the longitude and latitude positions of a bounding box as two strings beginning with the south-west corner or an array containing several such arrays. Any tweet from within any of the specified bounding boxes will be included in the stream.
 * **realfollow** - used with *follow* to simulate something like a Twitter list where only the tweets that's actually from the followed persons are included. Set to true to activate.
 
 ### Events
